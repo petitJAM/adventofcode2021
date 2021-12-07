@@ -4,6 +4,8 @@ import java.security.MessageDigest
 
 /**
  * Reads lines from the given input txt file.
+ *
+ * @param name will be appended with `.txt`
  */
 fun readInput(name: String) = File("src", "$name.txt").readLines()
 
