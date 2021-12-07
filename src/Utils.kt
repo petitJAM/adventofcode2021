@@ -21,3 +21,13 @@ fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest
  */
 @Throws(NumberFormatException::class)
 fun List<String>.toIntList(): List<Int> = this.map(String::toInt)
+
+/**
+ * Split this [String] on the last occurrence of [delimiter].
+ */
+fun String.splitLast(delimiter: String = " "): Pair<String, String> =
+    lastIndexOf(delimiter).let { index ->
+        substring(0, index) to substring(index + delimiter.length)
+    }
+
+class InvalidInputException(message: String? = null): Exception(message)
