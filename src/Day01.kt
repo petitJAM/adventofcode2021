@@ -2,11 +2,13 @@ fun main() {
     fun List<Int>.countIncreasing(): Int = this.zipWithNext().count { it.first < it.second }
 
     fun part1(input: List<String>): Int {
-        return input.map(String::toInt).countIncreasing()
+        return input.toIntList().countIncreasing()
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        return input.toIntList()
+            .windowed(3) { it.sum() }
+            .countIncreasing()
     }
 
     // test if implementation meets criteria from the description, like:

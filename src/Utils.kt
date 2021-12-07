@@ -13,3 +13,11 @@ fun readInput(name: String) = File("src", "$name.txt").readLines()
  * Converts string to md5 hash.
  */
 fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
+
+/**
+ * Convert a [List] of [String]s to [Int]s.
+ *
+ * Explodes if any of the strings cannot be converted to an integer.
+ */
+@Throws(NumberFormatException::class)
+fun List<String>.toIntList(): List<Int> = this.map(String::toInt)
