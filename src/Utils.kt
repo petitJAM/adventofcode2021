@@ -31,3 +31,6 @@ fun String.splitLast(delimiter: String = " "): Pair<String, String> =
     }
 
 class InvalidInputException(message: String? = null): Exception(message)
+
+@Suppress("FunctionName", "unused")
+fun Any?.TODO(): Nothing = throw NotImplementedError()
