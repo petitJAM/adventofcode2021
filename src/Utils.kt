@@ -7,7 +7,13 @@ import java.security.MessageDigest
  *
  * @param name will be appended with `.txt`
  */
-fun readInput(name: String) = File("src", "$name.txt").readLines()
+fun readInput(name: String) = File("src", "$name.txt")
+    .readLines()
+    .also {
+        if (it.isEmpty()) {
+            println("You didn't add the input!")
+        }
+    }
 
 /**
  * Converts string to md5 hash.
@@ -30,7 +36,7 @@ fun String.splitLast(delimiter: String = " "): Pair<String, String> =
         substring(0, index) to substring(index + delimiter.length)
     }
 
-class InvalidInputException(message: String? = null): Exception(message)
+class InvalidInputException(message: String? = null) : Exception(message)
 
 @Suppress("FunctionName", "unused")
 fun Any?.TODO(): Nothing = throw NotImplementedError()
