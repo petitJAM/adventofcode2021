@@ -21,13 +21,39 @@ fun main() {
         }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val oxygenGeneratorRating = input.first().indices
+            .fold(input) { acc, idx ->
+                if (acc.size == 1) return@fold acc
+                val bitCriteria = acc.groupingBy { it[idx] }
+                    .eachCount()
+                    .let {
+                        if (it.getValue('0') > it.getValue('1')) '0' else '1'
+                    }
+                acc.filter { it[idx] == bitCriteria }
+            }
+            .first()
+            .toInt(2)
+
+        val co2ScrubberRating = input.first().indices
+            .fold(input) { acc, idx ->
+                if (acc.size == 1) return@fold acc
+                val bitCriteria = acc.groupingBy { it[idx] }
+                    .eachCount()
+                    .let {
+                        if (it.getValue('0') > it.getValue('1')) '1' else '0'
+                    }
+                acc.filter { it[idx] == bitCriteria }
+            }
+            .first()
+            .toInt(2)
+
+        return oxygenGeneratorRating * co2ScrubberRating
     }
 
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day03_test")
     check(part1(testInput) == 198)
-    // check(part2(testInput) == 1)
+    check(part2(testInput) == 230)
 
     val input = readInput("Day03")
     println("Part 1: ${part1(input)}")
