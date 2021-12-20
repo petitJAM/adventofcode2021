@@ -63,7 +63,7 @@ fun main() {
     println("Part 2: ${part2(input)}")
 }
 
-fun parseInput(input: List<String>): Pair<List<Int>, List<BingoBoard>> {
+private fun parseInput(input: List<String>): Pair<List<Int>, List<BingoBoard>> {
     val drawnNumbersList = input[0].split(',').map(String::toInt)
     val bingoBoards = input.subList(2, input.size)
         .joinToString("\n")
